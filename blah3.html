@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dan Arnall</title>
+
+  <meta name="description" content="Dan Arnall — media executive, standards leader, and builder at the intersection of journalism, technology, and ethics." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #111;
+      --muted: #666;
+      --bg: #fafafa;
+      --accent: #0f3d3e;
+      --line: #e6e6e6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      line-height: 1.6;
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* Subtle “AI texture”: layered gradients + soft grain */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(15,61,62,0.08), transparent 60%),
+        radial-gradient(900px 700px at 85% 30%, rgba(17,17,17,0.05), transparent 60%),
+        radial-gradient(900px 900px at 50% 90%, rgba(15,61,62,0.05), transparent 60%),
+        linear-gradient(180deg, #fafafa, #f7f7f7);
+      filter: saturate(0.95);
+    }
+
+    /* Grain layer (no image files; just CSS noise-ish dithering effect) */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.08;
+      background:
+        repeating-radial-gradient(circle at 10% 20%, rgba(0,0,0,0.08) 0 1px, transparent 1px 4px),
+        repeating-radial-gradient(circle at 80% 60%, rgba(0,0,0,0.06) 0 1px, transparent 1px 5px);
+      mix-blend-mode: multiply;
+      transform: translateZ(0);
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .portrait-wrap {
+      width: 100%;
+      max-width: 360px;
+      position: relative;
+    }
+
+    img.portrait {
+      width: 100%;
+      border-radius
