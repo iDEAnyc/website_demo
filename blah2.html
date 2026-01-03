@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Arnall | Media. Ethics. Future.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sweater-blue: #9FB3C8; /* Approximate color from photo */
+            --dark-text: #1a1a1a;
+            --light-bg: #f9f9f9;
+            --accent-grey: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--dark-text);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--sweater-blue);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-sig {
+            height: 60px; /* Adjust based on sig clarity */
+            width: auto;
+            opacity: 0.9;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 80vh;
+            padding: 4rem 0;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .highlight {
+            color: var(--sweater-blue);
+            font-style: italic;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 450px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image-container {
+            position: relative;
+        }
+
+        /* Creating a subtle AI-inspired backdrop */
+        .ai-backdrop {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 2px 2px, var(--sweater-blue) 1px, transparent 0);
+            background-size: 20px 20px;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .main-headshot {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            filter: grayscale(10%) contrast(105%); /* Subtle enhancement */
+            box-shadow: 20px 20px 0px rgba(0,0,0,0.05);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 0;
+            background: white;
+            border-top: 1px solid var(--accent-grey);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+
+        .about-label {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: #888;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content ul {
+            list-style: none;
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .about-content li {
+            background: var(--light-bg);
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent-grey);
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--accent-grey);
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background-color: var(--dark-text);
+            color: white !important;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--sweater-blue);
+            color: white;
+        }
+
+        .cta-button::after {
+            display: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                margin: 0 auto 2rem auto;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="dan_sig.png" alt="Dan Arnall Signature" class="logo-sig">
+            <nav>
+                <a href="#about">About</a>
+                <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Leading at the speed of <span class="highlight">information.</span></h1>
+                <p>Ensuring integrity in the age of algorithms. Bridging the gap between traditional journalism and the AI future.</p>
+                <a href="mailto:hello@danarnall.com" class="cta-button">Get in Touch</a>
+            </div>
+            
+            <div class="hero-image-container">
+                <div class="ai-backdrop"></div>
+                <img src="Dan_Arnall_Sep2225_uncropped.jpg" alt="Dan Arnall Headshot" class="main-headshot">
+            </div>
+        </section>
+    </div>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-label">About Me</div>
+                <div class="about-content">
+                    <p>I am a media executive with a career defined by transformation. Having led major initiatives in both linear television and digital news, I currently oversee Ethics and Standards for a major American news organization.</p>
+                    
+                    <p>My work sits at the critical intersection of <strong>storytelling and responsibility</strong>. As artificial intelligence reshapes how information is created and consumed, I am focused on establishing the guardrails that maintain trust without stifling innovation.</p>
+
+                    <p>I believe the future of news isn't just about technology—it's about the human values we code into it.</p>
+
+                    <ul>
+                        <li>Media Strategy</li>
+                        <li>Ethics & Standards</li>
+                        <li>Artificial Intelligence</li>
+                        <li>Digital Transformation</li>
+                        <li>Executive Leadership</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>Let's Connect</h3>
+            <p style="margin: 1rem 0; color: #666;">hello@danarnall.com</p>
+            <img src="dan_sig.png" style="height: 40px; opacity: 0.5; margin-top: 2rem;" alt="Signature">
+            <p style="font-size: 0.8rem; margin-top: 2rem; color: #999;">&copy; 2026 Dan Arnall. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
