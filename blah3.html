@@ -80,4 +80,196 @@
 
     img.portrait {
       width: 100%;
-      border-radius
+      border-radius: 10px;
+      display: block;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.10);
+      transition: filter 350ms ease, transform 350ms ease, box-shadow 350ms ease;
+      will-change: filter, transform;
+    }
+
+    /* Monochrome portrait on hover (subtle “editorial” vibe) */
+    .portrait-wrap:hover img.portrait {
+      filter: grayscale(1) contrast(1.05) brightness(1.02);
+      transform: translateY(-2px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.12);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 0 14px;
+    }
+
+    .focus {
+      font-size: 0.98rem;
+      color: var(--ink);
+      opacity: 0.88;
+      max-width: 520px;
+      margin: 0;
+    }
+
+    .focus strong {
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    section {
+      margin-top: 92px;
+      max-width: 720px;
+    }
+
+    section h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .about {
+      font-family: "Libre Baskerville", serif;
+      font-size: 1.05rem;
+    }
+
+    .about p { margin: 0 0 20px; }
+
+    .signature {
+      margin-top: 44px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 900ms ease, transform 900ms ease;
+    }
+
+    .signature.is-visible {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+
+    .signature img {
+      width: 180px;
+      display: block;
+    }
+
+    footer {
+      margin-top: 110px;
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .links a, .contact a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .links a:hover, .contact a:hover { text-decoration: underline; }
+
+    .contact {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    @media (max-width: 800px) {
+      header { grid-template-columns: 1fr; gap: 38px; }
+      h1 { font-size: 2.2rem; }
+      .container { padding-top: 56px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      img.portrait, .signature { transition: none; }
+      .portrait-wrap:hover img.portrait { transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <div class="portrait-wrap" aria-label="Portrait">
+        <img src="Dan_Arnall_Sep2225_uncropped.png" alt="Dan Arnall portrait" class="portrait"/>
+      </div>
+
+      <div>
+        <h1>Dan Arnall</h1>
+        <p class="subtitle">
+          Media executive, standards leader, and builder at the intersection of journalism, technology, and ethics.
+        </p>
+        <p class="focus">
+          <strong>Focus:</strong> AI governance &amp; newsroom standards • trust &amp; accountability • responsible innovation at scale
+        </p>
+      </div>
+    </header>
+
+    <section>
+      <h2>About</h2>
+      <div class="about">
+        <p>
+          I’m a C-level media executive with deep experience across traditional and digital news organizations,
+          currently responsible for ethics and standards at a major American newsroom.
+        </p>
+        <p>
+          My work centers on trust, accountability, and the responsible integration of emerging technologies —
+          particularly AI — into journalism and media institutions.
+        </p>
+        <p>
+          I also serve in nonprofit board roles focused on education, storytelling, and civic impact.
+        </p>
+      </div>
+
+      <div class="signature" id="signature">
+        <img src="dan_sig.png" alt="Dan Arnall signature"/>
+      </div>
+    </section>
+
+    <footer>
+      <div class="links">
+        <a href="https://www.linkedin.com/danarnall/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <div class="contact">
+        <a href="mailto:hello@danarnall.com">hello@danarnall.com</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Signature fade-in on scroll (lightweight + respectful of reduced motion)
+    (function () {
+      const sig = document.getElementById("signature");
+      if (!sig) return;
+
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) {
+        sig.classList.add("is-visible");
+        return;
+      }
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            sig.classList.add("is-visible");
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      io.observe(sig);
+    })();
+  </script>
+</body>
+</html>
